@@ -1,34 +1,75 @@
 <template>
 
 	<!-- sidebar -->
-	<div class="h-auto w-full md:w-48 md:min-h-screen pl-2" :style="{backgroundColor : color.primary}">
-		<p class="text-2xl text-white font-semibold mb-4 pt-4 pl-2">Jaya Abadi</p>
-			<div class="w-full">
-				<p 	v-for="(link,index) in sidebar" @click="dropdownOpen(index)" 
-					class="mb-1 pl-3 py-1 text-white font-semibold w-80 hover:bg-white hover:text-green-500 transition">
-	                <a href="#">{{link.name}}</a>
-	                <div v-show="link.child && link.active == true" 
-	                	 class="pl-2 bg-green-600 text-white mt-2 w-2/5 rounded pt-2 pb-2">
-	                	<p  v-for="child in link.child" ><a class="py-1 text-sm" :href="child.link" >{{child.name}}</a></p>
-	                </div>
-              	</p>
-          	</div>
+	<div class="md:w-56"></div>
+
+	<div class="h-auto w-full md:w-56 md:min-h-screen pl-2 pr-2 shadow-lg fixed" :style="{backgroundColor : color.primary}">
+		
+		<!-- header -->
+		<div class="px-3 relative">
+			<div>
+				<p class="font-bold text-2xl text-white text-base pt-6 pb-1">jaya abadi</p>
+				<p class="text-sm mb-6 text-white font-semibold mt-0.5">Aplikasi PoS dan Inventaris</p>
+			</div>
+			<svg @click="dropdown_open = !dropdown_open" class="text-white md:hidden absolute top-1/2 --translate-2/4 transform	 w-8 right-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" /></svg>
+		</div>
+
+		<div class="w-full transition md:block" :class="{'hidden' : !dropdown_open, 'block' : dropdown_open}" >
+
+			<!-- button -->
+			<p class="flex font-bold w-auto pl-4 rounded py-2 text-sm text-white mx-3 bg-green-600 bg-opacity-60 mb-5 relative"><svg class="w-4 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 6v6m0 0v6m0-6h6m-6 0H6" /></svg>Point of Sales</p>
+
+			<div v-for="(link,index) in sidebar">
+				<p  class="relative px-3 flex py-2.5 text-white font-semibold text-sm hover:bg-white hover:text-green-500 rounded transition" @click="dropdownOpen(index)">
+					<svg class="w-5 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" :d="link.icon" />
+					</svg>
+					{{link.name}}
+					<svg v-if="!link.link" class="w-4 absolute right-3 top-2.5 mt-0.5 transition transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" :class="{'rotate-0' : !link.active, 'rotate-180' : link.active}">
+  						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7" />
+					</svg>
+				</p>
+
+				<!-- dropdown -->
+				<div v-show="link.child && link.active == true" class="py-2 mt-2 mb-2 rounded shadow-lg text-green-500 bg-white w-auto mx-3">
+					<p v-for="child in link.child" class="relative transform transition hover:translate-x-1 hover:text-green-400 font-semibold text-sm px-4 py-1 pointer">{{child.name}}
+						<svg class="hover:block w-4 absolute right-3 top-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+					</p>
+				</div>
+			</div>
+			<div class="h-5"></div>
+          </div>
     </div>
 
 </template>
+
+<style scoped type="text/css">
+	
+	*{
+		user-select: none; /* supported by Chrome and Opera */
+   		-webkit-user-select: none; /* Safari */
+   		-khtml-user-select: none; /* Konqueror HTML */
+   		-moz-user-select: none; /* Firefox */
+   		-ms-user-select: none; /* Internet Explorer/Edge */
+	}
+
+</style>
 
 <script>
 	export default{
 		data(){
 			return{
+				dropdown_open : false,
 				sidebar : [
 		          {
 		            name : "Dashboard",
 		            link : "#",
+		            icon : "M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
 		          },
 		          {
 		            name   : "Master",
 		            active : false,
+		            icon   : "M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z",
 		            child  : [
 		              {
 		                name : "Barang",
@@ -54,6 +95,7 @@
 		          {
 		            name   : "Pembelian",
 		            active : false,
+		            icon   : "M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z",
 		            child  : [
 		              {
 		                name : "Purchase Order",
@@ -71,6 +113,7 @@
 		          {
 		            name     : "Penjualan",
 		            active   : false,
+		            icon     : "M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0",
 		            child    : [
 		              {
 		                name : "Point of Sales",
@@ -94,7 +137,19 @@
 		},
 		methods : {
 			dropdownOpen : function(index){
-				
+			
+				// check if button is link or dropdown
+				if(this.sidebar[index].link){
+					this.$router.replace("/");
+					for(var i = 0; i < this.sidebar.length; i++){
+						if(i == index){
+							continue;
+						}
+						this.sidebar[i].active = false;
+					}
+					return;
+				}
+
 				if(this.sidebar[index].active == false){
 					this.sidebar[index].active = true;
 					for(var i = 0; i < this.sidebar.length; i++){

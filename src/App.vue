@@ -9,6 +9,18 @@
 
 </template>
 
+<style type="text/css">
+
+*{
+  font-family: "Gilroy"
+}
+
+.pointer{
+  cursor: pointer;
+}
+
+</style>
+
 <script>
 import Sidebar from "./components/sidebar.vue";
 
