@@ -1,6 +1,6 @@
 <template>
     <div>
-        <p>asdas</p>
+        <h2 class="font-semibold text-3xl">Menu Utama</h2>
     </div>
 </template>
 <script>
