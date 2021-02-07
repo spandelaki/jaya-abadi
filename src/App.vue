@@ -2,7 +2,7 @@
 
   <div class="md:flex flex-col md:flex-row min-h-screen w-full">
       <Sidebar :color="color"></Sidebar>
-      <div class="px-8">
+      <div class="px-10 w-full">
         <router-view/>
       </div>
   </div>
@@ -15,8 +15,24 @@
   font-family: "Gilroy"
 }
 
+input:focus, textarea:focus, select:focus{
+  outline: none;
+}
+
 .pointer{
   cursor: pointer;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }
 
 </style>

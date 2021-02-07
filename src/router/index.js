@@ -3,13 +3,20 @@ import Dashboard from '../views/Dashboard.vue'
 import Home from '../views/Home.vue'
 import About from '../views/About.vue'
 
+// penjualan
+import POS from '../views/penjualan/pos/index.vue'
+
 const routes = [
   {
     path: '/',
     name: 'Dashboard',
     component: Dashboard
   },
-  
+  {
+    path: '/penjualan/pos',
+    name: "Point of Sales",
+    component : POS
+  },
   {
     path: '/about',
     name: 'About',
