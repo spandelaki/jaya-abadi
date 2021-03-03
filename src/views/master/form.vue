@@ -80,12 +80,6 @@
 								type : "text",
 								value : "",
 								placeholder : "Harga Varian"
-							},
-							{
-								name : "stok",
-								type : "text",
-								value : "",
-								placeholder : "Stok Varian"
 							}
 						]
 					},
