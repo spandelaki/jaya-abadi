@@ -1,49 +1,53 @@
 <template>
-<div>
-	<!-- sidebar -->
-	<div class="md:w-64 mr-3"></div>
 
-	<div class="h-auto w-full sm:w-full md:w-56 md:min-h-screen pl-2 pr-2 pb-1 shadow-lg md:fixed" 
-		:style="{backgroundColor : color.primary}">
-		
-		<!-- header -->
-		<div class="px-3 relative">
-			<div>
-				<img src="../assets/logo.png" class="w-32 mx-auto">
-				<p class="text-sm mb-6 text-white font-semibold mt-0.5 text-center">Aplikasi PoS dan Inventaris</p>
-			</div>
-			<svg @click="dropdown_open = !dropdown_open" class="text-white md:hidden absolute top-1/2 --translate-2/4 transform	 w-8 right-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" /></svg>
-		</div>
+	<div>
 
-		<div class="w-full transition md:block" 
-			:class="{'hidden' : !dropdown_open, 'block' : dropdown_open}" >
+		<!-- sidebar -->
+		<div class="md:w-60"></div>
 
-			<!-- button -->
-			<p class="flex font-bold w-auto pl-4 rounded py-2 text-sm text-white pointer hover:bg-green-600 hover:text-green-200 transition mx-3 bg-green-300 bg-opacity-60 mb-5 relative"><svg class="w-4 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 6v6m0 0v6m0-6h6m-6 0H6" /></svg>Point of Sales</p>
-
-			<div v-for="(link,index) in sidebar" :key='index'>
-				<p  class="relative px-3 flex py-2.5 text-white font-semibold text-sm hover:bg-white hover:text-green-500 rounded transition" @click="dropdownOpen(index)">
-					<svg class="w-5 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" :d="link.icon" />
-					</svg>
-					{{link.name}}
-					<svg v-if="!link.link" class="w-4 absolute right-3 top-2.5 mt-0.5 transition transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" :class="{'rotate-0' : !link.active, 'rotate-180' : link.active}">
-						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7" />
-					</svg>
-				</p>
-				
-				<!-- dropdown -->
-				<div v-show="link.child && link.active == true" class="py-2 mt-2 mb-2 rounded shadow-lg text-green-500 bg-white w-auto mx-3">
-					<p v-for="(child,index) in link.child" :key='index' class="relative transform transition hover:translate-x-1 hover:text-green-400 font-semibold text-sm px-4 py-1 pointer">
-						<a :href="child.link" class="block">{{child.name}}<svg class="hover:block w-4 absolute right-3 top-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg></a>
-					</p>
+		<div class="w-full sm:w-full md:overflow-y md:pb-3 md:w-56 overflow-y-scroll h-auto md:h-full pl-2 pr-2 pb-1 shadow-lg md:fixed"
+			:style="{backgroundColor : color.primary}">
+			
+			<!-- header -->
+			<div class="px-3 relative">
+				<div>
+					<img src="../assets/logo.png" class="w-32 mx-auto">
+					<p class="text-sm mb-6 text-white font-semibold mt-0.5 text-center">Aplikasi PoS dan Inventaris</p>
 				</div>
+				<svg @click="dropdown_open = !dropdown_open" class="text-white md:hidden absolute top-1/2 --translate-2/4 transform	 w-8 right-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" /></svg>
 			</div>
-			<p class="mt-2 flex font-bold w-auto pl-4 rounded py-2 text-sm text-red-100 pointer hover:bg-red-600 hover:text-red-200 transition mx-3 bg-red-400 mb-5 relative"><svg class="w-4 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" /></svg>Keluar</p>
-			<div class="h-5"></div>
-			</div>
-    </div>
-</div>
+
+			<div class="w-full transition md:block" 
+				:class="{'hidden' : !dropdown_open, 'block' : dropdown_open}" >
+
+				<!-- button -->
+				<p class="flex font-bold w-auto pl-4 rounded py-2 text-sm text-white pointer hover:bg-green-600 hover:text-green-200 transition mx-3 bg-green-300 bg-opacity-60 mb-5 relative"><svg class="w-4 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 6v6m0 0v6m0-6h6m-6 0H6" /></svg>Point of Sales</p>
+
+				<div v-for="(link,index) in sidebar" :key='index'>
+					<p  class="relative px-3 flex py-2.5 text-white font-semibold text-sm hover:bg-white hover:text-green-500 rounded transition" @click="dropdownOpen(index)">
+						<svg class="w-5 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" :d="link.icon" />
+						</svg>
+						{{link.name}}
+						<svg v-if="!link.link" class="w-4 absolute right-3 top-2.5 mt-0.5 transition transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" :class="{'rotate-0' : !link.active, 'rotate-180' : link.active}">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7" />
+						</svg>
+					</p>
+					
+					<!-- dropdown -->
+					<div v-show="link.child && link.active == true" class="py-2 mt-2 mb-2 rounded shadow-lg text-green-500 bg-white w-auto mx-3">
+						<p v-for="(child,index) in link.child" :key='index' class="relative transform transition hover:translate-x-1 hover:text-green-400 font-semibold text-sm px-4 py-1 pointer">
+							<a :href="child.link" class="block">{{child.name}}<svg class="hover:block w-4 absolute right-3 top-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg></a>
+						</p>
+					</div>
+				</div>
+				<p class="mt-2 flex font-bold w-auto pl-4 rounded py-2 text-sm text-red-100 pointer hover:bg-red-600 hover:text-red-200 transition mx-3 bg-red-400 mb-5 relative"><svg class="w-4 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" /></svg>Keluar</p>
+				<div class="h-5"></div>
+				</div>
+	    </div>
+	
+	</div>
+
 </template>
 
 <style scoped type="text/css">
@@ -76,7 +80,7 @@
 		            child  : [
 		              {
 		                name : "Barang",
-		                link : "/#/1"
+		                link : "/#/master/barang"
 		              },
 		              {
 		                name : "Supplier",

@@ -3,6 +3,10 @@ import Dashboard from '../views/Dashboard.vue'
 import Home from '../views/Home.vue'
 import About from '../views/About.vue'
 
+// master
+import Barang from '../views/master/barang/index.vue'
+import Barang_Mutasi from '../views/master/form.vue'
+
 // penjualan
 import POS from '../views/penjualan/pos/index.vue'
 
@@ -11,6 +15,16 @@ const routes = [
     path: '/',
     name: 'Dashboard',
     component: Dashboard
+  },
+  {
+    path: '/master/barang',
+    name: "Barang",
+    component : Barang
+  },
+  {
+    path: '/master/barang/:id',
+    name: "Mutasi Barang",
+    component : Barang_Mutasi
   },
   {
     path: '/penjualan/pos',

@@ -1,5 +1,6 @@
 <template>
-	<div class="md:w-3/12 relative min-h-screen md:border-l md:pl-8 pt-9">
+	<div class="relative min-h-screen md:border-l md:pl-8 pt-9">
+
 		<div class="relative">
 			<p class="font-bold text-2xl text-base">Daftar Pesanan</p>
 			<p class="text-sm text-gray-400">Kelola daftar pesanan</p>
@@ -11,7 +12,7 @@
 		</div>
 		
 		<!-- list pesanan -->
-		<div class="mt-7 h-44">
+		<div class="mt-7 h-60">
 			<div v-for="(item,index) in order_list" class="flex mb-3">
 				<div class="w-5/12 font-semibold text-sm">{{item.name}} - {{item.variation}}
 					<br/><span class="text-xs text-gray-600">{{item.brand}}</span></div>
@@ -25,7 +26,7 @@
 			</div>
 		</div>
 
-		<div class="md:absolute md:bottom-10 w-full">
+		<div class="w-full">
 			<div class="shadow px-4 py-2 rounded pt-2">
 				<p class="flex py-1">
 					<span class="w-6/12 text-gray-600 font-semibold">Subtotal</span>

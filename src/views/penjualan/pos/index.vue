@@ -36,7 +36,7 @@
 				</div>
 			</div>
 		</div>
-		<Order class="md:w-5/12" :order_list="order_list"/>
+		<Order class="md:w-5/12 md:mr-9" :order_list="order_list"/>
 	</div>
 </template>
 
